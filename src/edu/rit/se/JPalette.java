@@ -53,56 +53,57 @@ public class JPalette
 			} else if (tok.length == 1) {
 				// Commands having no parameters
 				String cmd = tok[0];
-				switch (cmd) {
-				case "p":
+				if(cmd.equals("p")) {
 					System.out.println(sw);
-					break;
-				case "rgb":
+				}
+				else if(cmd.equals("rgb")){
 					System.out.println(sw
 						.toStringInModel(Model.RGB));
-					break;
-				case "cymk":
+				}
+				else if(cmd.equals("cymk")){
 					System.out.println(sw
 						.toStringInModel(Model.CYMK));
-					break;
-				case "hex":
+				}
+				else if (cmd.equals("hex")){
 					System.out.println(sw
 						.toStringInModel(Model.HEX));
-					break;
-				case "s":
+				}
+				else if(cmd.equals("s")){
 					if (sw.save()) {
 						System.out.println("Saved");
 					}
-					break;
-				case "q":
-					break quit;
-				default:
-					System.out.println("Bad command!");
 				}
-			} else {
+				else if(cmd.equals("q")){
+					break quit;
+				}
+				else
+					System.out.println("Bad command!");
+				} 
+			else {
 				// Commands having one parameter
 				Color c;
 
 				String cmd = tok[0];
 				String arg = tok[1];
 
-				switch (cmd) {
-				case "a":
+				
+				if(cmd.equals("a")){
 					c = ColorFactory.fromString(arg);
 					if (c != null && sw.addColor(c)) {
 						System.out.println("Added");
 					}
-					break;
-				case "r":
+					}
+				else if( cmd.equals("r")){
 					c = ColorFactory.fromString(arg);
 					if (c != null
 						&& sw.removeColor(c) != null) {
 						System.out.println("Removed");
 					}
-					break;
-				default:
-					System.out.println("Bad command!");
 				}
+				else{
+					System.out.println("Bad command!");
+					}
+			
 			}
 		}
 
